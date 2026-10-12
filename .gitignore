@@ -1,0 +1,19 @@
+#Maven
+target/
+
+#IntelliJ IDEA
+.idea
+*.iml
+
+#VS code
+.vscode/
+
+#macOS
+.DS_Store
+
+#Logs
+*.log
+
+#Allure
+allure-results/
+allure-report/
