@@ -17,3 +17,7 @@ target/
 #Allure
 allure-results/
 allure-report/
+
+# Application binaries
+app/*.apk
+app/*.aab

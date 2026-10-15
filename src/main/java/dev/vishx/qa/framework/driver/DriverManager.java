@@ -14,6 +14,9 @@ public class DriverManager {
             options.setPlatformName("Android");
             options.setAutomationName("UiAutomator2");
             options.setDeviceName("emulator-5554");
+
+            options.setAppPackage("com.swaglabsmobileapp");
+            options.setAppActivity("com.swaglabsmobileapp.SplashActivity");
             AndroidDriver androidDriver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), options);
             driver.set(androidDriver);
         }
