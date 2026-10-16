@@ -14,13 +14,14 @@ public class LoginScreen extends BaseScreen {
     }
 
     public void enterUsername(String username){
-        driver.findElement(usernameField).sendKeys(username);
+        waitHelper.waitForVisibility(usernameField).sendKeys(username);
     }
     public void enterPassword(String password){
-        driver.findElement(passwordField).sendKeys(password);
+
+        waitHelper.waitForVisibility(passwordField).sendKeys(password);
     }
     public HomeScreen clickLogin(){
-        driver.findElement(loginButton).click();
+        waitHelper.waitForVisibility(loginButton).click();
         return new HomeScreen(driver);
     }
 }
