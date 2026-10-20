@@ -14,7 +14,11 @@ public class WaitHelper {
     private  final WebDriverWait wait;
     private final ConfigReader configReader = FrameworkConfig.getConfigReader();
     public WaitHelper(AndroidDriver driver){
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(Integer.parseInt(configReader.get("explicitWaitTimeoutSeconds"))));
+        int timeoutInSeconds = configReader.getInt("explicitWaitTimeoutSeconds");
+        if(timeoutInSeconds<=0){
+            throw new IllegalArgumentException("explicitWaitTimeoutSeconds must be greater than 0, but was: "+timeoutInSeconds);
+        }
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
     }
 
     public WebElement waitForVisibility(By locator){

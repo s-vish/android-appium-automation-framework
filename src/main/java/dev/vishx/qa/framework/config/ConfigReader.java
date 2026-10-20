@@ -26,4 +26,14 @@ public class ConfigReader {
         }
         return value;
     }
+
+    public int getInt(String key){
+        String value = get(key);
+        try{
+            return Integer.parseInt(value);
+        }
+        catch (NumberFormatException e){
+            throw new IllegalArgumentException("Configuration property must be an integer value "+key+" = "+value, e);
+        }
+    }
 }
