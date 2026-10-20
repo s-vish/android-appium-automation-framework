@@ -21,7 +21,7 @@ public class LoginScreen extends BaseScreen {
         waitHelper.waitForVisibility(passwordField).sendKeys(password);
     }
     public HomeScreen clickLogin(){
-        waitHelper.waitForVisibility(loginButton).click();
+        waitHelper.waitForClickability(loginButton).click();
         return new HomeScreen(driver);
     }
 }

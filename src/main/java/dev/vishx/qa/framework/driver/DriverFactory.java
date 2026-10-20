@@ -1,6 +1,7 @@
 package dev.vishx.qa.framework.driver;
 
 import dev.vishx.qa.framework.config.ConfigReader;
+import dev.vishx.qa.framework.config.FrameworkConfig;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 
@@ -9,7 +10,7 @@ import java.net.URL;
 
 public class DriverFactory {
 
-    private static final ConfigReader configReader = new ConfigReader();
+    private static final ConfigReader configReader = FrameworkConfig.getConfigReader();
 
     public static AndroidDriver createDriver(){
         try {
