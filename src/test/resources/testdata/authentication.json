@@ -1,0 +1,11 @@
+{
+  "validLogin": {
+    "username": "standard_user",
+    "password": "secret_sauce"
+  },
+  "invalidLogin": {
+    "username": "standard_userss",
+    "password": "secret_sauce",
+    "expectedError": "Username and password do not match any user in this service."
+  }
+}
