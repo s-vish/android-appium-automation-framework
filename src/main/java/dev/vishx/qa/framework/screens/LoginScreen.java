@@ -9,6 +9,8 @@ public class LoginScreen extends BaseScreen {
     private  final By usernameField = AppiumBy.accessibilityId("test-Username");
     private  final By passwordField= AppiumBy.accessibilityId("test-Password");
     private  final By loginButton = AppiumBy.accessibilityId("test-LOGIN");
+    private final By loginErrorMessage = AppiumBy.androidUIAutomator(
+            "new UiSelector().text(\"Username and password do not match any user in this service.\")");
     public LoginScreen(AndroidDriver driver){
         super(driver);
     }
@@ -23,5 +25,9 @@ public class LoginScreen extends BaseScreen {
     public HomeScreen clickLogin(){
         waitHelper.waitForClickability(loginButton).click();
         return new HomeScreen(driver);
+    }
+    public String getLoginErrorMessage(){
+        return waitHelper.waitForVisibility(loginErrorMessage)
+                .getText();
     }
 }

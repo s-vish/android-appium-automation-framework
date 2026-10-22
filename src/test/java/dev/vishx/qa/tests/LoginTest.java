@@ -15,4 +15,15 @@ public class LoginTest extends BaseTest{
         HomeScreen homeScreen = loginScreen.clickLogin();
         Assert.assertTrue(homeScreen.isDisplayed(),"Home screen was not displayed after successful login");
     }
+
+    @Test
+    public void verifyFailedLoginWithInvalidCreds(){
+        LoginScreen loginScreen = new LoginScreen(driver);
+        loginScreen.enterUsername("standard_userss");
+        loginScreen.enterPassword("secret_sauce");
+        loginScreen.clickLogin();
+        String errorMessage = loginScreen.getLoginErrorMessage();
+        Assert.assertEquals(errorMessage,"Username and password do not match any user in this service.");
+
+    }
 }
