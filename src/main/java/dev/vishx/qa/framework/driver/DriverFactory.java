@@ -11,7 +11,7 @@ import java.net.URL;
 public class DriverFactory {
 
     private static final ConfigReader configReader = FrameworkConfig.getConfigReader();
-
+    private static final ConfigReader configReader1 = new ConfigReader();
     public static AndroidDriver createDriver(){
         try {
             UiAutomator2Options options = new UiAutomator2Options();
