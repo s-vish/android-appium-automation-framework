@@ -11,28 +11,39 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class WaitHelper {
-    private  final WebDriverWait wait;
+
+    private final AndroidDriver driver;
     private final ConfigReader configReader = FrameworkConfig.getConfigReader();
     public WaitHelper(AndroidDriver driver){
-        int timeoutInSeconds = configReader.getInt("explicitWaitTimeoutSeconds");
+        this.driver=driver;
+    }
+
+    private WebDriverWait getWait(WaitType waitType){
+
+        int timeoutInSeconds = switch (waitType){
+            case SHORT -> configReader.getInt("shortWaitSeconds");
+            case MEDIUM -> configReader.getInt("mediumWaitSeconds");
+            case LONG -> configReader.getInt("longWaitSeconds");
+        };
         if(timeoutInSeconds<=0){
-            throw new IllegalArgumentException("explicitWaitTimeoutSeconds must be greater than 0, but was: "+timeoutInSeconds);
+            throw new IllegalArgumentException("Wait timeout must be greater than 0, but was "+timeoutInSeconds);
         }
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+        return new WebDriverWait(driver,Duration.ofSeconds(timeoutInSeconds));
     }
 
-    public WebElement waitForVisibility(By locator){
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    public WebElement waitForVisibility(By locator, WaitType waitType){
+
+        return getWait(waitType).until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public WebElement waitForClickability(By locator){
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    public WebElement waitForClickability(By locator, WaitType waitType){
+        return getWait(waitType).until(ExpectedConditions.elementToBeClickable(locator));
     }
-    public WebElement waitForPresence(By locator){
-        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    public WebElement waitForPresence(By locator, WaitType waitType){
+        return getWait(waitType).until(ExpectedConditions.presenceOfElementLocated(locator));
     }
-    public boolean waitForInvisibility(By locator){
-        return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    public boolean waitForInvisibility(By locator, WaitType waitType){
+        return getWait(waitType).until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
 }

@@ -1,6 +1,7 @@
 package dev.vishx.qa.framework.screens;
 
 
+import dev.vishx.qa.framework.helpers.WaitType;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
@@ -14,6 +15,6 @@ public class HomeScreen extends BaseScreen{
     }
 
     public boolean isDisplayed(){
-        return waitHelper.waitForVisibility(productsTitle).isDisplayed();
+        return waitHelper.waitForVisibility(productsTitle, WaitType.MEDIUM).isDisplayed();
     }
 }

@@ -3,7 +3,7 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class DriverManager {
     
-    public static final ThreadLocal<AndroidDriver> driver = new ThreadLocal<>();
+    private static final ThreadLocal<AndroidDriver> driver = new ThreadLocal<>();
 
     public static void createDriver() {
             AndroidDriver androidDriver = DriverFactory.createDriver();

@@ -1,5 +1,6 @@
 package dev.vishx.qa.framework.screens;
 
+import dev.vishx.qa.framework.helpers.WaitType;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
@@ -16,18 +17,18 @@ public class LoginScreen extends BaseScreen {
     }
 
     public void enterUsername(String username){
-        waitHelper.waitForVisibility(usernameField).sendKeys(username);
+        waitHelper.waitForVisibility(usernameField, WaitType.SHORT).sendKeys(username);
     }
     public void enterPassword(String password){
 
-        waitHelper.waitForVisibility(passwordField).sendKeys(password);
+        waitHelper.waitForVisibility(passwordField, WaitType.SHORT).sendKeys(password);
     }
     public HomeScreen clickLogin(){
-        waitHelper.waitForClickability(loginButton).click();
+        waitHelper.waitForClickability(loginButton,WaitType.MEDIUM).click();
         return new HomeScreen(driver);
     }
     public String getLoginErrorMessage(){
-        return waitHelper.waitForVisibility(loginErrorMessage)
+        return waitHelper.waitForVisibility(loginErrorMessage,WaitType.MEDIUM)
                 .getText();
     }
 }

@@ -191,7 +191,9 @@ deviceName=emulator-5554
 appPackage=com.swaglabsmobileapp
 appActivity=com.swaglabsmobileapp.SplashActivity
 appiumServerUrl=http://127.0.0.1:4723
-explicitWaitTimeoutSeconds=10
+shortWaitSeconds=5
+mediumWaitSeconds=15
+longWaitSeconds=30
 ```
 
 Adjust `deviceName` and `appiumServerUrl` as required for your environment.
